@@ -24,6 +24,4 @@ Baixar ou clonar este repositório usando `git clone https://github.com/willsant
 
 1 - Abra um terminal na pasta do projeto e execute o seguinte comando: `docker-compose up -d --build`;
 
-2 - Defina o projeto `SCAD.Application` como projeto de inicialização e compile o projeto;
-
-3 - Acesse o endereço `http://localhost:5000/swagger/index.html` e tenha acesso a documentação de rotas da API pelo Swagger.
+2 - Acesse o endereço `http://localhost:5000/swagger/index.html` e tenha acesso a documentação de rotas da API pelo Swagger.

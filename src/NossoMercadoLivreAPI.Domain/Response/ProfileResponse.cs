@@ -6,8 +6,6 @@ namespace NossoMercadoLivreAPI.Domain.Response
 {
     public class ProfileResponse : BaseResponse
     {
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
         [JsonPropertyName("description")]
         public string Description { get; set; }
     }

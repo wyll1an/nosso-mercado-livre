@@ -32,11 +32,7 @@ namespace NossoMercadoLivreAPI.Service.Services
             {
                 await _unitOfWork.BeginAsync();
 
-                UserProfileEntity userProfileEntity = new UserProfileEntity()
-                {
-                    UserId = userId,
-                    ProfileId = UserProfileConst.UserAdmin
-                };
+                UserProfileEntity userProfileEntity = new UserProfileEntity(userId, UserProfileConst.UserAdmin);
 
                 await _repository.InsertAsync(userProfileEntity);
                 await _unitOfWork.CommitAsync();
@@ -56,11 +52,7 @@ namespace NossoMercadoLivreAPI.Service.Services
             {
                 await _unitOfWork.BeginAsync();
 
-                UserProfileEntity userProfileEntity = new UserProfileEntity()
-                {
-                    UserId = userId,
-                    ProfileId = UserProfileConst.UserDefault
-                };
+                UserProfileEntity userProfileEntity = new UserProfileEntity(userId, UserProfileConst.UserDefault);
 
                 await _repository.InsertAsync(userProfileEntity);
                 await _unitOfWork.CommitAsync();

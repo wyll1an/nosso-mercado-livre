@@ -6,8 +6,6 @@ namespace NossoMercadoLivreAPI.Domain.Request
 {
     public class UserRequest : BaseRequest
     {
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
         [JsonPropertyName("full_name")]
         public string FullName { get; set; }
         [JsonPropertyName("email")]

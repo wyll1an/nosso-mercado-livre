@@ -8,8 +8,6 @@ namespace NossoMercadoLivreAPI.Domain.Response
 {
     public class UserResponse : BaseResponse
     {
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
         [JsonPropertyName("full_name")]
         public string FullName { get; set; }
         [JsonPropertyName("email")]

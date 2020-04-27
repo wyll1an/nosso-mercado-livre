@@ -81,15 +81,13 @@ namespace NossoMercadoLivreAPI.Service.Services
                     throw new Exception(MessagesAPI.USER_NOT_FOUND);
                 #endregion
 
-                userEntity.FullName = user.FullName;
-                userEntity.Document = user.Document;
-                userEntity.PhoneNumber = user.PhoneNumber;
+                UserEntity userUpdate = new UserEntity(user, userEntity);
 
                 await _unitOfWork.BeginAsync();
-                await _repository.UpdateAsync(userEntity);
+                await _repository.UpdateAsync(userUpdate);
                 await _unitOfWork.CommitAsync();
 
-                return _mapper.Map<UserResponse>(userEntity);
+                return _mapper.Map<UserResponse>(userUpdate);
             }
             catch (ValidationException ex)
             {

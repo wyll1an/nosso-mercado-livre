@@ -58,8 +58,13 @@ namespace NossoMercadoLivreAPI.Service.Services.Base
             {
                 await ValidateAsync(entity, Activator.CreateInstance<V>());
 
+                var resultEntity = await _repository.GetOneByFilterWithIncludesAsync(i => i.Id == entity.Id);
+                if (resultEntity is null)
+                    throw new ArgumentException(MessagesAPI.NOT_FOUND);
+
                 await _unitOfWork.BeginAsync();
                 E entityUpdate = _mapper.Map<E>(entity);
+                entityUpdate.CreatedDate = resultEntity.CreatedDate;
                 await _repository.UpdateAsync(entityUpdate);
                 await _unitOfWork.CommitAsync();
 

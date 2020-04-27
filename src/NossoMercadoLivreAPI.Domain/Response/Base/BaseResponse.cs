@@ -1,9 +1,11 @@
 ﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace NossoMercadoLivreAPI.Domain.Response.Base
 {
-    [DataContract]
-    public class BaseResponse
+    public abstract class BaseResponse
     {
+        [JsonPropertyName("id")]
+        public virtual long Id { get; set; }
     }
 }

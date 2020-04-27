@@ -144,6 +144,9 @@
   <data name="ID_INVALID" xml:space="preserve">
     <value>Id inválido.</value>
   </data>
+  <data name="NOT_FOUND" xml:space="preserve">
+    <value>Registro não encontrado para atualizar.</value>
+  </data>
   <data name="OBJECT_INVALID" xml:space="preserve">
     <value>Objeto inválido.</value>
   </data>

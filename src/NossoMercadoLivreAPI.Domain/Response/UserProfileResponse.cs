@@ -6,6 +6,8 @@ namespace NossoMercadoLivreAPI.Domain.Response
 {
     public class UserProfileResponse : BaseResponse
     {
+        [JsonIgnore]
+        public override long Id { get; set; }
         [JsonPropertyName("user_id")]
         public long UserId { get; set; }
 

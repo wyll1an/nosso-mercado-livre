@@ -142,6 +142,15 @@ namespace NossoMercadoLivreAPI.Infra.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Registro não encontrado para atualizar..
+        /// </summary>
+        public static string NOT_FOUND {
+            get {
+                return ResourceManager.GetString("NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Objeto inválido..
         /// </summary>
         public static string OBJECT_INVALID {

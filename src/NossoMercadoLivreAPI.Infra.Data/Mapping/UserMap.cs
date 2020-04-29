@@ -4,9 +4,9 @@ using NossoMercadoLivreAPI.Domain.Entities;
 
 namespace NossoMercadoLivreAPI.Infra.Data.Mapping
 {
-    public class UserMap : IEntityTypeConfiguration<UserEntity>
+    public class UserMap : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<UserEntity> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("user");
 

@@ -16,17 +16,17 @@ namespace NossoMercadoLivreAPI.Infra.Data.Repository
             _context = context;
         }
 
-        public virtual async Task<UserEntity> InsertAsync(UserEntity entity)
+        public virtual async Task<User> InsertAsync(User entity)
         {
-            await _context.Set<UserEntity>().AddAsync(entity);
+            await _context.Set<User>().AddAsync(entity);
             await _context.SaveChangesAsync();
 
             return entity;
         }
 
-        public virtual async Task<UserEntity> GetOneByFilterAsync(Expression<Func<UserEntity, bool>> filter)
+        public virtual async Task<User> GetOneByFilterAsync(Expression<Func<User, bool>> filter)
         {
-            return await _context.Set<UserEntity>().AsNoTracking().SingleOrDefaultAsync(filter);
+            return await _context.Set<User>().AsNoTracking().SingleOrDefaultAsync(filter);
         }
     }
 }

@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace NossoMercadoLivreAPI.Domain.Entities
 {
-    public class UserEntity
+    public class User
     {
-        public UserEntity()
+        public User()
         {}
 
-        public UserEntity(UserRequest userRequest)
+        public User(UserRequest userRequest)
         {
             Id = userRequest.Id;
             FullName = userRequest.FullName;
@@ -20,7 +20,7 @@ namespace NossoMercadoLivreAPI.Domain.Entities
             CreatedDate = DateTime.Now;
         }
 
-        public UserEntity(long id, string fullName, string email, string document, string phoneNumber, string password)
+        public User(long id, string fullName, string email, string document, string phoneNumber, string password)
         {
             Id = id;
             FullName = fullName;

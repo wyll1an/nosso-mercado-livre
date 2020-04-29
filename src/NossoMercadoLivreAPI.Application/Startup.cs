@@ -29,7 +29,7 @@ namespace NossoMercadoLivreAPI.Application
               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
               .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
               .AddEnvironmentVariables();
-            
+
             Configuration = builder.Build();
         }
 
@@ -39,7 +39,10 @@ namespace NossoMercadoLivreAPI.Application
         {
             RegisterServicesAndRepositories(services);
 
-            services.AddMvc()
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(ValidateModelStateAttribute));
+            })  
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
 
@@ -107,8 +110,6 @@ namespace NossoMercadoLivreAPI.Application
 
         public void RegisterServicesAndRepositories(IServiceCollection services)
         {
-            services.AddSingleton<IValidator<UserRequest>, UserValidator>();
-
             services.AddScoped<IUserRepository, UserRepository>();
         }
         #endregion

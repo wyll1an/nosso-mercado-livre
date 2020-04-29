@@ -5,9 +5,6 @@ using System.Threading.Tasks;
 using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
 using NossoMercadoLivreAPI.Domain.Entities;
 using NossoMercadoLivreAPI.Domain.Request;
-using FluentValidation;
-using FluentValidation.Results;
-using NossoMercadoLivreAPI.Util;
 
 namespace NossoMercadoLivreAPI.Application.Controllers
 {
@@ -16,13 +13,6 @@ namespace NossoMercadoLivreAPI.Application.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IValidator<UserRequest> _validator;
-
-        public UserController(IValidator<UserRequest> validator)
-        {
-            _validator = validator;
-        }
-
         /// <summary>
         /// Salva Usuário
         /// </summary>
@@ -36,26 +26,13 @@ namespace NossoMercadoLivreAPI.Application.Controllers
         {
             try
             {
-                ValidationResult result = _validator.Validate(user, ruleSet: "all");
+                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-                if (result.IsValid)
-                {
-                    var userEntity = await userRepository.GetOneByFilterAsync(u => u.Email == user.Email);
-                    if (userEntity != null)
-                        throw new ArgumentException(MessagesAPI.USER_ALREADY_EXISTS);
+                User userSave = new User(user);
 
-                    user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                await userRepository.InsertAsync(userSave);
 
-                    UserEntity userSave = new UserEntity(user);
-
-                    await userRepository.InsertAsync(userSave);
-
-                    return Ok();
-                } 
-                else
-                {
-                    return BadRequest(result.Errors);
-                }
+                return Ok();
             }
             catch (Exception ex)
             {

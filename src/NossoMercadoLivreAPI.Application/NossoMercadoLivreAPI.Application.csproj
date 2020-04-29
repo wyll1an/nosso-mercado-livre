@@ -38,7 +38,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NossoMercadoLivreAPI.Infra.Data\NossoMercadoLivreAPI.Infra.Data.csproj" />
-    <ProjectReference Include="..\NossoMercadoLivreAPI.Util\NossoMercadoLivreAPI.Util.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

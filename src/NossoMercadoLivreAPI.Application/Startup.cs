@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,8 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using NossoMercadoLivreAPI.Infra.Data.Context;
 using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
 using NossoMercadoLivreAPI.Infra.Data.Repository;
-using FluentValidation;
-using NossoMercadoLivreAPI.Domain.Request;
 using NossoMercadoLivreAPI.Domain.Validators;
 
 namespace NossoMercadoLivreAPI.Application

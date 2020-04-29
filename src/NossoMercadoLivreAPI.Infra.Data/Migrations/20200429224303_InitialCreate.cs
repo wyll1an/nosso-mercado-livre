@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace NossoMercadoLivreAPI.Infra.Data.Migrations
@@ -14,12 +13,8 @@ namespace NossoMercadoLivreAPI.Infra.Data.Migrations
                 {
                     id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    full_name = table.Column<string>(maxLength: 100, nullable: false),
                     email = table.Column<string>(maxLength: 100, nullable: false),
-                    document = table.Column<string>(maxLength: 20, nullable: false),
-                    phone_number = table.Column<string>(maxLength: 20, nullable: false),
-                    password_hash = table.Column<string>(maxLength: 100, nullable: false),
-                    created_date = table.Column<DateTime>(nullable: false)
+                    password_hash = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {

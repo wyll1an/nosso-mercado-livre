@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using NossoMercadoLivreAPI.Infra.Data.Context;
 using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
 using NossoMercadoLivreAPI.Infra.Data.Repository;
-using NossoMercadoLivreAPI.Domain.Validators;
 
 namespace NossoMercadoLivreAPI.Application
 {
@@ -36,10 +35,7 @@ namespace NossoMercadoLivreAPI.Application
         {
             RegisterServicesAndRepositories(services);
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(typeof(ValidateModelStateAttribute));
-            })  
+            services.AddMvc()  
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
 

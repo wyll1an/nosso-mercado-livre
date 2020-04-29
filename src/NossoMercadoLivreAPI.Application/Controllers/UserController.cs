@@ -24,20 +24,13 @@ namespace NossoMercadoLivreAPI.Application.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Save([FromServices] IUserRepository userRepository, [FromBody]UserRequest user)
         {
-            try
-            {
-                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-                User userSave = new User(user);
+            User userSave = new User(user);
 
-                await userRepository.InsertAsync(userSave);
+            await userRepository.InsertAsync(userSave);
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            return Ok();
         }
     }
 }

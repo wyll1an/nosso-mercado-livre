@@ -8,8 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["src/NossoMercadoLivreAPI.Application/NossoMercadoLivreAPI.Application.csproj", "src/NossoMercadoLivreAPI.Application/"]
-COPY ["src/NossoMercadoLivreAPI.Service/NossoMercadoLivreAPI.Service.csproj", "src/NossoMercadoLivreAPI.Service/"]
-COPY ["src/NossoMercadoLivreAPI.Infra.Resources/NossoMercadoLivreAPI.Infra.Resources.csproj", "src/NossoMercadoLivreAPI.Infra.Resources/"]
+COPY ["src/NossoMercadoLivreAPI.Util/NossoMercadoLivreAPI.Util.csproj", "src/NossoMercadoLivreAPI.Util/"]
 COPY ["src/NossoMercadoLivreAPI.Domain/NossoMercadoLivreAPI.Domain.csproj", "src/NossoMercadoLivreAPI.Domain/"]
 COPY ["src/NossoMercadoLivreAPI.Infra.Data/NossoMercadoLivreAPI.Infra.Data.csproj", "src/NossoMercadoLivreAPI.Infra.Data/"]
 RUN dotnet restore "src/NossoMercadoLivreAPI.Application/NossoMercadoLivreAPI.Application.csproj"

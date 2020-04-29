@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NossoMercadoLivreAPI.Infra.Resources {
+namespace NossoMercadoLivreAPI.Util {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace NossoMercadoLivreAPI.Infra.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NossoMercadoLivreAPI.Infra.Resources.MessagesAPI", typeof(MessagesAPI).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NossoMercadoLivreAPI.Util.MessagesAPI", typeof(MessagesAPI).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

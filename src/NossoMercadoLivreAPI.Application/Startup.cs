@@ -16,7 +16,7 @@ using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
 using NossoMercadoLivreAPI.Infra.Data.Repository;
 using FluentValidation;
 using NossoMercadoLivreAPI.Domain.Request;
-using NossoMercadoLivreAPI.Service.Validators;
+using NossoMercadoLivreAPI.Domain.Validators;
 
 namespace NossoMercadoLivreAPI.Application
 {

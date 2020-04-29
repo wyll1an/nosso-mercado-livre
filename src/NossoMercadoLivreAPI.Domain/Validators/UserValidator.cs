@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using System;
-using NossoMercadoLivreAPI.Infra.Resources;
 using NossoMercadoLivreAPI.Domain.Request;
+using NossoMercadoLivreAPI.Util;
 
-namespace NossoMercadoLivreAPI.Service.Validators
+namespace NossoMercadoLivreAPI.Domain.Validators
 {
     public class UserValidator : AbstractValidator<UserRequest>
     {

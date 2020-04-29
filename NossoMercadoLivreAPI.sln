@@ -7,23 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Application", "01 - Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Domain", "02 - Domain", "{263C5E94-235E-4202-A97C-090589C72859}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Service", "03 - Service", "{072D662E-F491-4B70-AC60-A7C7104DD5F6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Util", "04 - Util", "{072D662E-F491-4B70-AC60-A7C7104DD5F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Infra", "04 - Infra", "{7FBE3D2E-66A6-4670-A193-B084B802BB88}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Infra", "03 - Infra", "{7FBE3D2E-66A6-4670-A193-B084B802BB88}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.1 - Data", "04.1 - Data", "{E5CBCED6-63FB-4E96-B996-6A61DEC44A3C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.1 - Data", "03.1 - Data", "{E5CBCED6-63FB-4E96-B996-6A61DEC44A3C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossoMercadoLivreAPI.Application", "src\NossoMercadoLivreAPI.Application\NossoMercadoLivreAPI.Application.csproj", "{A49BFE76-E30A-4895-9F0F-AFBD75C21A98}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossoMercadoLivreAPI.Domain", "src\NossoMercadoLivreAPI.Domain\NossoMercadoLivreAPI.Domain.csproj", "{15D6569C-980A-4F94-BDCF-86D85D1F67AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossoMercadoLivreAPI.Service", "src\NossoMercadoLivreAPI.Service\NossoMercadoLivreAPI.Service.csproj", "{D033C36B-7925-49A8-85C4-CC53EDD6C78C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossoMercadoLivreAPI.Util", "src\NossoMercadoLivreAPI.Util\NossoMercadoLivreAPI.Util.csproj", "{D033C36B-7925-49A8-85C4-CC53EDD6C78C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossoMercadoLivreAPI.Infra.Data", "src\NossoMercadoLivreAPI.Infra.Data\NossoMercadoLivreAPI.Infra.Data.csproj", "{66A80D04-06C6-4425-8613-AABFF49560FA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.2 - Resources", "04.2 - Resources", "{E734EF18-F75A-4CD1-8A17-A529AE420D27}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossoMercadoLivreAPI.Infra.Resources", "src\NossoMercadoLivreAPI.Infra.Resources\NossoMercadoLivreAPI.Infra.Resources.csproj", "{84AAFB10-643C-450E-9423-898EA8A6D63C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E76F612F-803E-45E0-A830-510C09ADEE47}"
 	ProjectSection(SolutionItems) = preProject
@@ -52,10 +48,6 @@ Global
 		{66A80D04-06C6-4425-8613-AABFF49560FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66A80D04-06C6-4425-8613-AABFF49560FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66A80D04-06C6-4425-8613-AABFF49560FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84AAFB10-643C-450E-9423-898EA8A6D63C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84AAFB10-643C-450E-9423-898EA8A6D63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84AAFB10-643C-450E-9423-898EA8A6D63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84AAFB10-643C-450E-9423-898EA8A6D63C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,8 +58,6 @@ Global
 		{15D6569C-980A-4F94-BDCF-86D85D1F67AD} = {263C5E94-235E-4202-A97C-090589C72859}
 		{D033C36B-7925-49A8-85C4-CC53EDD6C78C} = {072D662E-F491-4B70-AC60-A7C7104DD5F6}
 		{66A80D04-06C6-4425-8613-AABFF49560FA} = {E5CBCED6-63FB-4E96-B996-6A61DEC44A3C}
-		{E734EF18-F75A-4CD1-8A17-A529AE420D27} = {7FBE3D2E-66A6-4670-A193-B084B802BB88}
-		{84AAFB10-643C-450E-9423-898EA8A6D63C} = {E734EF18-F75A-4CD1-8A17-A529AE420D27}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5C6BB42B-BCEA-41C4-BF47-95EB5C91B868}

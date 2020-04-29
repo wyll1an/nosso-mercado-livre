@@ -11,8 +11,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NossoMercadoLivreAPI.Domain\NossoMercadoLivreAPI.Domain.csproj" />
-    <ProjectReference Include="..\NossoMercadoLivreAPI.Infra.Resources\NossoMercadoLivreAPI.Infra.Resources.csproj" />
+    <Compile Update="MessagesAPI.Designer.cs">
+      <DependentUpon>MessagesAPI.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="MessagesAPI.resx">
+      <LastGenOutput>MessagesAPI.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

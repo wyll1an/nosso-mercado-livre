@@ -4,12 +4,10 @@ using System;
 using System.Threading.Tasks;
 using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
 using NossoMercadoLivreAPI.Domain.Entities;
-using NossoMercadoLivreAPI.Infra.Resources;
-using NossoMercadoLivreAPI.Service.Common;
-using System.Security.Cryptography;
 using NossoMercadoLivreAPI.Domain.Request;
 using FluentValidation;
 using FluentValidation.Results;
+using NossoMercadoLivreAPI.Util;
 
 namespace NossoMercadoLivreAPI.Application.Controllers
 {
@@ -46,7 +44,7 @@ namespace NossoMercadoLivreAPI.Application.Controllers
                     if (userEntity != null)
                         throw new ArgumentException(MessagesAPI.USER_ALREADY_EXISTS);
 
-                    user.Password = Util.GetSha256Hash(new SHA256CryptoServiceProvider(), user.Password);
+                    user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
                     UserEntity userSave = new UserEntity(user);
 

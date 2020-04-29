@@ -1,11 +1,12 @@
 ﻿using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
-using NossoMercadoLivreAPI.Domain.Request.Base;
 
 namespace NossoMercadoLivreAPI.Domain.Request
 {
-    public class UserRequest : BaseRequest
+    public class UserRequest
     {
+        [JsonPropertyName("id")]
+        public long Id { get; set; }
         [JsonPropertyName("full_name")]
         public string FullName { get; set; }
         [JsonPropertyName("email")]
@@ -16,5 +17,7 @@ namespace NossoMercadoLivreAPI.Domain.Request
         public string PhoneNumber { get; set; }   
         [JsonPropertyName("password")]
         public string Password { get; set; }
+
+
     }
 }

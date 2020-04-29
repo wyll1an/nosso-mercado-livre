@@ -17,9 +17,8 @@ namespace NossoMercadoLivreAPI.Infra.Data.Mapping
             builder.HasIndex(c => c.Email).IsUnique();
             builder.Property(c => c.Document).HasColumnName("document").HasMaxLength(20).IsRequired();
             builder.Property(c => c.PhoneNumber).HasColumnName("phone_number").HasMaxLength(20).IsRequired();
-            builder.Property(c => c.PasswordHash).HasColumnName("password_hash").HasMaxLength(100).IsRequired();
+            builder.Property(c => c.Password).HasColumnName("password_hash").HasMaxLength(100).IsRequired();
             builder.Property(c => c.CreatedDate).HasColumnName("created_date").IsRequired();
-            builder.Property(c => c.UpdatedDate).HasColumnName("updated_date").IsRequired();
 
         }
     }

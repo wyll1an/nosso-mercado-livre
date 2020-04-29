@@ -1,106 +1,67 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using NossoMercadoLivreAPI.Application.Controllers.Base;
-using NossoMercadoLivreAPI.Domain.Interfaces.Services;
-using NossoMercadoLivreAPI.Domain.Request;
-using NossoMercadoLivreAPI.Domain.Response;
 using System.Threading.Tasks;
+using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
+using NossoMercadoLivreAPI.Domain.Entities;
+using NossoMercadoLivreAPI.Infra.Resources;
+using NossoMercadoLivreAPI.Service.Common;
+using System.Security.Cryptography;
+using NossoMercadoLivreAPI.Domain.Request;
 using FluentValidation;
+using FluentValidation.Results;
 
 namespace NossoMercadoLivreAPI.Application.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
-    public class UserController : BaseController
+    [ApiController]
+    public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
-        
-        public UserController(IUserService userService)
+        private readonly IValidator<UserRequest> _validator;
+
+        public UserController(IValidator<UserRequest> validator)
         {
-            _userService = userService;
+            _validator = validator;
         }
-        
+
         /// <summary>
         /// Salva Usuário
         /// </summary>
+        /// <param name="userRepository"></param>
         /// <param name="user"></param>
         /// <returns></returns>
-        [HttpPost("")]
-        [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Save([FromBody]UserRequest user)
+        [HttpPost("saveUser")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Save([FromServices] IUserRepository userRepository, [FromBody]UserRequest user)
         {
             try
             {
-                return Ok(await _userService.SaveUserAsync(user));
-            }
-            catch (ValidationException ex)
-            {
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+                ValidationResult result = _validator.Validate(user, ruleSet: "all");
 
-        /// <summary>
-        /// Atualiza Usuário
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        [HttpPut("")]
-        [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Update([FromBody]UserUpdateRequest user)
-        {
-            try
-            {
-                return Ok(await _userService.UpdateUserAsync(user));
-            }
-            catch (ValidationException ex)
-            {
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+                if (result.IsValid)
+                {
+                    var userEntity = await userRepository.GetOneByFilterAsync(u => u.Email == user.Email);
+                    if (userEntity != null)
+                        throw new ArgumentException(MessagesAPI.USER_ALREADY_EXISTS);
 
-        /// <summary>
-        /// Busca todos os usuários
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("")]
-        [ProducesResponseType(typeof(List<UserResponse>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll()
-        {
-            try
-            {
-                return Ok(await _userService.GetAllAsync());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+                    user.Password = Util.GetSha256Hash(new SHA256CryptoServiceProvider(), user.Password);
 
-        /// <summary>
-        /// Busca usuário pelo id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(List<UserResponse>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById(long id)
-        {
-            try
-            {
-                return Ok(await _userService.GetByIdAsync(id));
+                    UserEntity userSave = new UserEntity(user);
+
+                    await userRepository.InsertAsync(userSave);
+
+                    return Ok();
+                } 
+                else
+                {
+                    return BadRequest(result.Errors);
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                return BadRequest(ex.Message);
             }
         }
     }

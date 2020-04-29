@@ -1,12 +1,11 @@
 ﻿using System;
 using System.IO;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NossoMercadoLivreAPI.Infra.Data.Context;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
+using NossoMercadoLivreAPI.Infra.Data.Context;
 
 namespace NossoMercadoLivreAPI.Application
 {
@@ -44,10 +43,5 @@ namespace NossoMercadoLivreAPI.Application
                     webBuilder.UseStartup<Startup>();
                 });
 
-        //private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        //    WebHost.CreateDefaultBuilder(args)
-        //        .UseContentRoot(Directory.GetCurrentDirectory())
-        //        .UseIISIntegration()
-        //        .UseStartup<Startup>();
     }
 }

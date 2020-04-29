@@ -1,41 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using NossoMercadoLivreAPI.Domain.Entities.Base;
-using NossoMercadoLivreAPI.Domain.Request;
+﻿using NossoMercadoLivreAPI.Domain.Request;
+using System;
+using System.Text.Json.Serialization;
 
 namespace NossoMercadoLivreAPI.Domain.Entities
 {
-    public class UserEntity : BaseEntity
+    public class UserEntity
     {
         public UserEntity()
+        {}
+
+        public UserEntity(UserRequest userRequest)
         {
+            Id = userRequest.Id;
+            FullName = userRequest.FullName;
+            Email = userRequest.Email;
+            Document = userRequest.Document;
+            PhoneNumber = userRequest.PhoneNumber;
+            Password = userRequest.Password;
+            CreatedDate = DateTime.Now;
         }
 
-        /// <summary>
-        /// Construtor para update de usuário.
-        /// </summary>
-        /// <param name="fullName"></param>
-        /// <param name="document"></param>
-        /// <param name="phoneNumber"></param>
-        public UserEntity(UserUpdateRequest userUpdate, UserEntity userEntity)
+        public UserEntity(long id, string fullName, string email, string document, string phoneNumber, string password)
         {
-            this.Id = userEntity.Id;
-            this.CreatedDate = userEntity.CreatedDate;
-            this.UpdatedDate = userEntity.UpdatedDate;
-            this.Email = userEntity.Email;
-            this.PasswordHash = userEntity.PasswordHash;
-            this.UserProfiles = userEntity.UserProfiles;
-            this.FullName = userUpdate.FullName;
-            this.Document = userUpdate.Document;
-            this.PhoneNumber = userUpdate.PhoneNumber;
+            Id = id;
+            FullName = fullName;
+            Email = email;
+            Document = document;
+            PhoneNumber = phoneNumber;
+            Password = password;
+            CreatedDate = DateTime.Now;
         }
 
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string Document { get; set; }
-        public string PhoneNumber { get; set; }
-        public string PasswordHash { get; set; }
-
-        public List<UserProfileEntity> UserProfiles { get; set; }
+        public long Id { get; private set; }
+        public string FullName { get; private set; }
+        public string Email { get; private set; }
+        public string Document { get; private set; }
+        public string PhoneNumber { get; private set; }
+        public string Password { get; private set; }
+        public DateTime CreatedDate { get; private set; }
     }
 }

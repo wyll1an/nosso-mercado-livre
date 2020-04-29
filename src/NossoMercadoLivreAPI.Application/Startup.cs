@@ -1,24 +1,22 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using AutoMapper;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using NossoMercadoLivreAPI.Domain.Const;
-using NossoMercadoLivreAPI.Infra.CrossCutting.IoC;
-using NossoMercadoLivreAPI.Service.AutoMapper;
-using NossoMercadoLivreAPI.Service.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using NossoMercadoLivreAPI.Infra.Data.Context;
+using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
+using NossoMercadoLivreAPI.Infra.Data.Repository;
+using FluentValidation;
+using NossoMercadoLivreAPI.Domain.Request;
+using NossoMercadoLivreAPI.Service.Validators;
 
 namespace NossoMercadoLivreAPI.Application
 {
@@ -39,17 +37,14 @@ namespace NossoMercadoLivreAPI.Application
 
         public void ConfigureServices(IServiceCollection services)
         {
-            new DependencyInjection(services).RegisterServices();
+            RegisterServicesAndRepositories(services);
 
-            services.AddAutoMapper(typeof(AutoMapperConfig));
-
-            services.AddMvc(config => config.Filters.Add(typeof(CustomExceptionFilter)))
+            services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
 
             ConfigDatabase(services);
             SwaggerConfigGen(services);
-            CorsConfig(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -68,7 +63,6 @@ namespace NossoMercadoLivreAPI.Application
 
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors(Policy.AllowAll);
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
@@ -104,24 +98,18 @@ namespace NossoMercadoLivreAPI.Application
             });
         }
 
-        private void CorsConfig(IServiceCollection services)
-        {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(Policy.AllowAll, p =>
-                {
-                    p.AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                });
-            });
-        }
-
         private void ConfigDatabase(IServiceCollection services)
         {
             services.AddDbContext<ContextDb>(opt =>
                 opt.UseNpgsql(Configuration.GetConnectionString("NossoMercadoLivreAPI_DB"))
             );
+        }
+
+        public void RegisterServicesAndRepositories(IServiceCollection services)
+        {
+            services.AddSingleton<IValidator<UserRequest>, UserValidator>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
         }
         #endregion
     }

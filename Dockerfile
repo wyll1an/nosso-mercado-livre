@@ -11,7 +11,6 @@ COPY ["src/NossoMercadoLivreAPI.Application/NossoMercadoLivreAPI.Application.csp
 COPY ["src/NossoMercadoLivreAPI.Service/NossoMercadoLivreAPI.Service.csproj", "src/NossoMercadoLivreAPI.Service/"]
 COPY ["src/NossoMercadoLivreAPI.Infra.Resources/NossoMercadoLivreAPI.Infra.Resources.csproj", "src/NossoMercadoLivreAPI.Infra.Resources/"]
 COPY ["src/NossoMercadoLivreAPI.Domain/NossoMercadoLivreAPI.Domain.csproj", "src/NossoMercadoLivreAPI.Domain/"]
-COPY ["src/NossoMercadoLivreAPI.Infra.CrossCutting/NossoMercadoLivreAPI.Infra.CrossCutting.csproj", "src/NossoMercadoLivreAPI.Infra.CrossCutting/"]
 COPY ["src/NossoMercadoLivreAPI.Infra.Data/NossoMercadoLivreAPI.Infra.Data.csproj", "src/NossoMercadoLivreAPI.Infra.Data/"]
 RUN dotnet restore "src/NossoMercadoLivreAPI.Application/NossoMercadoLivreAPI.Application.csproj"
 COPY . .

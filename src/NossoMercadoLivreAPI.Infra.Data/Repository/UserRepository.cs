@@ -2,27 +2,31 @@
 using NossoMercadoLivreAPI.Domain.Entities;
 using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
 using NossoMercadoLivreAPI.Infra.Data.Context;
-using NossoMercadoLivreAPI.Infra.Data.Repository.Base;
+using System;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace NossoMercadoLivreAPI.Infra.Data.Repository
 {
-    public class UserRepository : BaseRepository<UserEntity>, IUserRepository
+    public class UserRepository : IUserRepository
     {
+        private readonly ContextDb _context;
         public UserRepository(ContextDb context)
-            : base(context)
         {
+            _context = context;
         }
 
-        public override async Task<UserEntity> UpdateAsync(UserEntity userEntity)
+        public virtual async Task<UserEntity> InsertAsync(UserEntity entity)
         {
-            _context.Entry(userEntity).Property(x => x.CreatedDate).IsModified = false;
-            _context.Entry(userEntity).Property(x => x.PasswordHash).IsModified = false;
-            _context.Entry(userEntity).Property(x => x.Email).IsModified = false;
-            _context.Entry(userEntity).State = EntityState.Modified;
+            await _context.Set<UserEntity>().AddAsync(entity);
             await _context.SaveChangesAsync();
 
-            return userEntity;
+            return entity;
+        }
+
+        public virtual async Task<UserEntity> GetOneByFilterAsync(Expression<Func<UserEntity, bool>> filter)
+        {
+            return await _context.Set<UserEntity>().AsNoTracking().SingleOrDefaultAsync(filter);
         }
     }
 }

@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NossoMercadoLivreAPI.Infra.CrossCutting\NossoMercadoLivreAPI.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\NossoMercadoLivreAPI.Infra.Data\NossoMercadoLivreAPI.Infra.Data.csproj" />
     <ProjectReference Include="..\NossoMercadoLivreAPI.Service\NossoMercadoLivreAPI.Service.csproj" />
   </ItemGroup>
 

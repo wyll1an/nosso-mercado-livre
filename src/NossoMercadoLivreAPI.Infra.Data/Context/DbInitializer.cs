@@ -18,8 +18,8 @@ namespace NossoMercadoLivreAPI.Infra.Data.Context
             {
                 var users = new List<User>()
                 {
-                    new User(1, "user@login.com", "$2a$11$PdoQ9MyLH5D6HEAhqXI0i.X1AFOyh9d7u73OHs4mp6DZWcdvttTQu"),
-                    new User(2, "user2@login.com", "$2a$11$PdoQ9MyLH5D6HEAhqXI0i.X1AFOyh9d7u73OHs4mp6DZWcdvttTQu")
+                    new User("user@login.com", "$2a$11$PdoQ9MyLH5D6HEAhqXI0i.X1AFOyh9d7u73OHs4mp6DZWcdvttTQu"),
+                    new User("user2@login.com", "$2a$11$PdoQ9MyLH5D6HEAhqXI0i.X1AFOyh9d7u73OHs4mp6DZWcdvttTQu")
                 };
 
                 await context.AddRangeAsync(users);

@@ -11,16 +11,14 @@ namespace NossoMercadoLivreAPI.Domain.Entities
 
         public User(UserRequest userRequest)
         {
-            Id = userRequest.Id;
             Email = userRequest.Email;
-            Password = userRequest.Password;
+            Password = BCrypt.Net.BCrypt.HashPassword(userRequest.Password);
         }
 
-        public User(long id, string email, string password)
+        public User(string email, string password)
         {
-            Id = id;
             Email = email;
-            Password = password;
+            Password = BCrypt.Net.BCrypt.HashPassword(password);
         }
 
         public long Id { get; private set; }

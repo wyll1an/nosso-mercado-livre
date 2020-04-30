@@ -14,7 +14,7 @@ namespace NossoMercadoLivreAPI.Application.Controllers
     public class UserController : ControllerBase
     {
         /// <summary>
-        /// Salva Usuário
+        /// Salva Usuário. O campo password deve ser passado sem criptografia. A criptografia é gerada ao inserir usuário.
         /// </summary>
         /// <param name="userRepository"></param>
         /// <param name="user"></param>
@@ -24,8 +24,6 @@ namespace NossoMercadoLivreAPI.Application.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Save([FromServices] IUserRepository userRepository, [FromBody]UserRequest user)
         {
-            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-
             User userSave = new User(user);
 
             await userRepository.InsertAsync(userSave);

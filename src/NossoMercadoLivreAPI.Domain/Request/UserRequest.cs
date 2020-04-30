@@ -5,9 +5,6 @@ namespace NossoMercadoLivreAPI.Domain.Request
 {
     public class UserRequest
     {
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
-
         [Required(ErrorMessage = "E-mail é obrigatório.")]
         [EmailAddress(ErrorMessage = "E-mail é inválido.")]
         [JsonPropertyName("email")]

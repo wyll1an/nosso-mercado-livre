@@ -6,9 +6,6 @@ namespace NossoMercadoLivreAPI.Domain.Entities
 {
     public class User
     {
-        public User()
-        {}
-
         /// <summary>
         ///  O campo password deve ser passado sem criptografia.
         /// </summary>
@@ -17,17 +14,6 @@ namespace NossoMercadoLivreAPI.Domain.Entities
         {
             Email = userRequest.Email;
             Password = BCrypt.Net.BCrypt.HashPassword(userRequest.Password);
-        }
-
-        /// <summary>
-        ///  O campo password deve ser passado sem criptografia.
-        /// </summary>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        public User(string email, string password)
-        {
-            Email = email;
-            Password = BCrypt.Net.BCrypt.HashPassword(password);
         }
 
         public long Id { get; private set; }

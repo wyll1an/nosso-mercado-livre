@@ -23,10 +23,5 @@ namespace NossoMercadoLivreAPI.Infra.Data.Repository
 
             return entity;
         }
-
-        public virtual async Task<User> GetOneByFilterAsync(Expression<Func<User, bool>> filter)
-        {
-            return await _context.Set<User>().AsNoTracking().SingleOrDefaultAsync(filter);
-        }
     }
 }

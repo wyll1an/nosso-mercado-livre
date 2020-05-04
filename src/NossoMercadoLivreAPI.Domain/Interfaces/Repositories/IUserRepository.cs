@@ -8,6 +8,5 @@ namespace NossoMercadoLivreAPI.Domain.Interfaces.Repositories
     public interface IUserRepository 
     {
         Task<User> InsertAsync(User entity);
-        Task<User> GetOneByFilterAsync(Expression<Func<User, bool>> filter);
     }
 }

@@ -14,7 +14,7 @@ namespace NossoMercadoLivreAPI.Application.Controllers
     public class UserController : ControllerBase
     {
         /// <summary>
-        /// Salva Usuário. O campo password deve ser passado sem criptografia. A criptografia é gerada ao inserir usuário.
+        /// Salva Usuário.
         /// </summary>
         /// <param name="userRepository"></param>
         /// <param name="user"></param>

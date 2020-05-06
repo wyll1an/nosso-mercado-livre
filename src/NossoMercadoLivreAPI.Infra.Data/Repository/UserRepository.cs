@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NossoMercadoLivreAPI.Domain.Entities;
+using NossoMercadoLivreAPI.Domain.Interfaces.Context;
 using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
 using NossoMercadoLivreAPI.Infra.Data.Context;
 using System;
@@ -10,16 +11,16 @@ namespace NossoMercadoLivreAPI.Infra.Data.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ContextDb _context;
-        public UserRepository(ContextDb context)
+        private readonly IDbContext _context;
+        public UserRepository(IDbContext context)
         {
             _context = context;
         }
 
         public virtual async Task<User> InsertAsync(User entity)
         {
-            await _context.Set<User>().AddAsync(entity);
-            await _context.SaveChangesAsync();
+            await _context.Instance.Set<User>().AddAsync(entity);
+            await _context.Instance.SaveChangesAsync();
 
             return entity;
         }

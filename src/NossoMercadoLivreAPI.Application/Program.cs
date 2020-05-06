@@ -20,7 +20,6 @@ namespace NossoMercadoLivreAPI.Application
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<ContextDb>();
                 try
                 {
                     await DbInitializer.InitializeAsync(services);

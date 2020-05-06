@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using NossoMercadoLivreAPI.Domain.Validators;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace NossoMercadoLivreAPI.Domain.Request
@@ -7,6 +8,7 @@ namespace NossoMercadoLivreAPI.Domain.Request
     {
         [Required(ErrorMessage = "E-mail é obrigatório.")]
         [EmailAddress(ErrorMessage = "E-mail é inválido.")]
+        [UniqueUserValidator(ErrorMessage = "Usuário com este e-mail já existe.")]
         [JsonPropertyName("email")]
         public string Email { get; set; }
 

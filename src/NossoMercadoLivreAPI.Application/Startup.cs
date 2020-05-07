@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using NossoMercadoLivreAPI.Infra.Data.Context;
 using NossoMercadoLivreAPI.Domain.Interfaces.Repositories;
 using NossoMercadoLivreAPI.Infra.Data.Repository;
-using NossoMercadoLivreAPI.Domain.Interfaces.Context;
 
 namespace NossoMercadoLivreAPI.Application
 {
@@ -104,7 +103,6 @@ namespace NossoMercadoLivreAPI.Application
 
         public void RegisterServicesAndRepositories(IServiceCollection services)
         {
-            services.AddScoped<IDbContext, ContextDb>();
             services.AddScoped<IUserRepository, UserRepository>();
         }
         #endregion

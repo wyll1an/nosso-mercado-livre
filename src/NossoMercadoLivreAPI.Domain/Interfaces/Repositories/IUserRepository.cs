@@ -8,5 +8,6 @@ namespace NossoMercadoLivreAPI.Domain.Interfaces.Repositories
     public interface IUserRepository 
     {
         Task<User> InsertAsync(User entity);
+        bool CheckUserIsUnique(string email);
     }
 }

@@ -7,6 +7,7 @@ namespace NossoMercadoLivreAPI.Infra.Data.Context
     public class ContextDb : DbContext
     {
         public DbSet<User> User { get; set; }
+        public DbSet<Category> Category { get; set; }
 
         public ContextDb(DbContextOptions<ContextDb> options) :
             base(options)
@@ -18,6 +19,7 @@ namespace NossoMercadoLivreAPI.Infra.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>(new UserMap().Configure);
+            modelBuilder.Entity<Category>(new CategoryMap().Configure);
         }
     }
 }

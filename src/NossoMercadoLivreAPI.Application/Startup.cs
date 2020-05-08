@@ -104,6 +104,7 @@ namespace NossoMercadoLivreAPI.Application
         public void RegisterServicesAndRepositories(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
         #endregion
     }
